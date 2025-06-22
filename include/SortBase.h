@@ -4,6 +4,7 @@
 
 #ifndef SORTBASE_H
 #define SORTBASE_H
+#include <memory>
 
 
 class SortBase {
@@ -21,6 +22,7 @@ public:
     int length() const {
         return length_;
     }
+    virtual std::unique_ptr<int[]> array() = 0;
 protected:
     int compareTime_=0;
     int swapTime_=0;

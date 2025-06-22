@@ -1,0 +1,14 @@
+on: [push]
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+    steps:
+      - name: build-test
+        run: |
+          git clone https://github.com/Mike-Solar/show-sorting.git
+          cd show-sorting
+          mkdir build
+          cd build
+          cmake ..
+          cmake --build . --parallel 4 --target test
+          .\test.exe
