@@ -11,4 +11,4 @@ jobs:
           cd build
           cmake ..
           cmake --build . --parallel 4 --target test
-          .\test.exe
+          .\Debug\test.exe
