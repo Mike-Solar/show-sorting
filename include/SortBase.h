@@ -5,6 +5,7 @@
 #ifndef SORTBASE_H
 #define SORTBASE_H
 #include <memory>
+#include "LinkedList.h"
 
 
 class SortBase {
