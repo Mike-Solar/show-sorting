@@ -1,23 +1,23 @@
 //
-// Created by mikesolar on 25-6-21.
+// Created by Mike Solar on 2025-06-21.
 //
 
 #ifndef QUICKSORT_H
 #define QUICKSORT_H
 #include "SortBase.h"
+#include <memory>
 
 
 class QuickSort : public SortBase{
 public:
-    explicit QuickSort(int length):SortBase(length){}
-    ~QuickSort() override= default;
+    explicit QuickSort();
+    ~QuickSort() override = default;
     void sort() override;
-    void generate() override;
+    void generate(int length) override;
 private:
-    void quickSort(int *arr, int left, int right);
-    int partition(int *arr, int left, int right);
-    int compareTime=0;
-    int swapTime=0;
+    void quickSort(int left, int right);
+    int partition(int left, int right);
+    std::unique_ptr<int[]> data; // 使用智能指针确保正确释放
 };
 
 

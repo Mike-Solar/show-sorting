@@ -1,47 +1,55 @@
 //
-// Created by mikesolar on 25-6-21.
+// Created by Mike Solar on 2025-06-21.
 //
 
 #include "QuickSort.h"
 #include <cstdlib>
 #include <ctime>
-#include <filesystem>
 #include <utility>
 
 
-void QuickSort::sort() {
-    int left=0;
-    int right=length-1;
-    quickSort(data, left, right);
+QuickSort::QuickSort():SortBase() {
+    length_ = 0;
 }
 
-void QuickSort::generate() {
-    srand(time(0));
+void QuickSort::sort() {
+    int left=0;
+    int right=length_-1;
+    quickSort(left, right);
+}
+
+void QuickSort::generate(int length) {
+    this->length_=length;
+    this->data=std::make_unique<int[]>(length);
     for (int i = 0; i < length; i++) {
+        srand(time(NULL));
         data[i] = rand()%10000 + 10000;
     }
 }
 
-void QuickSort::quickSort(int *data, int left, int right) {
+void QuickSort::quickSort(int left, int right) {
     if (left >= right) {
         return;
     }
-    int pivot=partition(data, left, right);
-    quickSort(data, left, pivot);
-    quickSort(data, pivot+1, right);
+    int pivot=partition(left, right);
+    quickSort(left, pivot);
+    quickSort(pivot+1, right);
 }
 
-int QuickSort::partition(int *arr, int left, int right) {
+int QuickSort::partition(int left, int right) {
 
     int pivot = left;
     int index=left+1;
     for (int i=index+1; i<=right; i++) {
-        if (arr[i] < arr[pivot]) {
-            std::swap(arr[i], arr[index]);
+        if (data[i] < data[pivot]) {
+            std::swap(data[i], data[index]);
+            swapTime_++;
             index++;
         }
+        compareTime_++;
     }
-    std::swap(arr[pivot], arr[index]);
+    std::swap(data[pivot], data[index]);
+    swapTime_++;
     return pivot;
 }
 

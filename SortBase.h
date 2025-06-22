@@ -1,27 +1,30 @@
 //
-// Created by mikesolar on 25-6-21.
+// Created by Mike Solar on 25-6-21.
 //
 
 #ifndef SORTBASE_H
 #define SORTBASE_H
-#include <memory>
 
 
 class SortBase {
 public:
-    SortBase(int length) {
-        data=new int[length];
-        this->length=length;
-    };
-    virtual ~SortBase() {
-        delete[] data;
-    };
+    SortBase() = default;
+    virtual ~SortBase() = default;
     virtual void sort() = 0;
-    virtual void generate() = 0;
-
+    virtual void generate(int length) = 0;
+    int compareTime() const {
+        return compareTime_;
+    }
+    int swapTime() const {
+        return swapTime_;
+    }
+    int length() const {
+        return length_;
+    }
 protected:
-    int *data;
-    int length;
+    int compareTime_=0;
+    int swapTime_=0;
+    int length_=0;
 };
 
 
