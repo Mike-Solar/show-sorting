@@ -7,7 +7,7 @@
 
 
 template<typename T>
-struct LinkedList<T> {
+struct LinkedList {
 	struct LinkedList* next;
 	struct LinkedList* prev;
 	T data;
